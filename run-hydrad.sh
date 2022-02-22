@@ -15,11 +15,11 @@ if $TESTNET; then
     # not sure why this was in the installer/setup script, by the time someone gets a shell into the container similar time should pass
     # and if running in Kubernetes, there's probes and delays
     # sleep 20
-    echo "running on testnet, call the daemon with: ~/Hydra/bin/./hydra-cli -testnet getinfo"
+    echo "running on testnet, call the daemon with: ./hydra-cli -testnet getinfo"
 else
     ./hydrad -daemon -staking=${STAKING}
     # sleep 20
-    echo "running on mainnet, call the daemon with: ~/Hydra/bin/./hydra-cli getinfo"
+    echo "running on mainnet, call the daemon with: ./hydra-cli getinfo"
 fi
 
 while true; do sleep 30; done;
