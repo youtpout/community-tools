@@ -24,9 +24,9 @@ RUN apt-get -y install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # get hydra
-WORKDIR /root
+WORKDIR /home
 RUN mkdir -p Hydra
-WORKDIR /root/Hydra
+WORKDIR /home/Hydra
 
 RUN wget -N https://github.com/Hydra-Chain/node/releases/download/hydra_v0.18.5.5/hydra-0.18.5.5-ubuntu20.04-x86_64-gnu.zip
 RUN unzip -o hydra-0.18.5.5-ubuntu20.04-x86_64-gnu.zip
@@ -39,10 +39,10 @@ ARG MAINNET_PORT=3338
 EXPOSE $TESTNET_PORT
 EXPOSE $MAINNET_PORT
 
-COPY ./run-hydrad.sh /root/Hydra/bin/run-hydrad.sh
+COPY ./run-hydrad.sh /home/Hydra/bin/run-hydrad.sh
 
-ENV PATH="/root/Hydra/bin:${PATH}"
+ENV PATH="/home/Hydra/bin:${PATH}"
 
-WORKDIR /root/Hydra/bin
+WORKDIR /home/Hydra/bin
 RUN chmod +x ./run-hydrad.sh
 CMD ["./run-hydrad.sh"]
